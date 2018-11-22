@@ -25,16 +25,15 @@
 
 $file = "testData.json";
 $json = json_decode(file_get_contents($file), true);
-$sensorArray = array($json[0]);
-$j = 0;
-$l = 0;
-//$sensorArray = array_merge($sensorArray, $json[0]);
-
 
 usort($json, function ($a, $b) {
     return $a['sensor'] <=> $b['sensor'];
 });
 
+
+$sensorArray = array($json[0]);
+$j = 0;
+$l = 0;
 
 for ($i = 1; $i < sizeof($json); $i++) {
 
@@ -47,11 +46,15 @@ for ($i = 1; $i < sizeof($json); $i++) {
                 $sensorArray[$l] = $json[$k];
             }
         }
+        //echo("<script>console.log('PHP: ".$i." ".$j."');</script>");
+        //echo("<script>console.log('PHP: Sensor ".$sensorArray[$l]['sensor'].": Current Highest Date: ".$sensorArray[$l]['date']."');</script>");
+        array_push($sensorArray, array($json[$i]));
 
-        echo("<script>console.log('PHP: ".$l.": Current Highest Date: ".$sensorArray[$l]['date']."');</script>");
         $j = 0;
+        $l++;
     }
 }
+
 
 // dynamically create cards with values
 echo "<main class='container-fluid'>";
