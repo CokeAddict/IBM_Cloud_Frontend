@@ -1,0 +1,1002 @@
+[
+   {
+      "_id": "5bf54abe11fd506f1d183bdd",
+      "index": 0,
+      "date": "2018-05-13 07:28:18",
+      "sensor": 3,
+      "temperature": 18,
+      "humidity": 63,
+      "distance": 461,
+      "luminosity": 16
+   },
+   {
+      "_id": "5bf54abe7082fd1a0dda1c39",
+      "index": 1,
+      "date": "2018-01-05 11:41:13",
+      "sensor": 4,
+      "temperature": 17,
+      "humidity": 59,
+      "distance": 41,
+      "luminosity": 35
+   },
+   {
+      "_id": "5bf54abe0207d54ef8131dfa",
+      "index": 2,
+      "date": "2018-10-11 04:39:05",
+      "sensor": 1,
+      "temperature": 18,
+      "humidity": 72,
+      "distance": 347,
+      "luminosity": 7
+   },
+   {
+      "_id": "5bf54abecf137dfaa0cc0d2b",
+      "index": 3,
+      "date": "2018-07-09 06:19:39",
+      "sensor": 1,
+      "temperature": 35,
+      "humidity": 70,
+      "distance": 429,
+      "luminosity": 83
+   },
+   {
+      "_id": "5bf54abeb7bb7700b03592ff",
+      "index": 4,
+      "date": "2018-10-21 04:34:07",
+      "sensor": 5,
+      "temperature": 15,
+      "humidity": 71,
+      "distance": 364,
+      "luminosity": 94
+   },
+   {
+      "_id": "5bf54abef1c8f85912a6cc6e",
+      "index": 5,
+      "date": "2018-01-25 04:49:32",
+      "sensor": 4,
+      "temperature": 26,
+      "humidity": 71,
+      "distance": 913,
+      "luminosity": 5
+   },
+   {
+      "_id": "5bf54abe47e0802a60587239",
+      "index": 6,
+      "date": "2018-01-09 10:26:53",
+      "sensor": 1,
+      "temperature": 32,
+      "humidity": 13,
+      "distance": 730,
+      "luminosity": 9
+   },
+   {
+      "_id": "5bf54abe980f13ffc8f04575",
+      "index": 7,
+      "date": "2018-04-23 08:39:32",
+      "sensor": 0,
+      "temperature": 0,
+      "humidity": 100,
+      "distance": 416,
+      "luminosity": 9
+   },
+   {
+      "_id": "5bf54abef9605d83faefb0a8",
+      "index": 8,
+      "date": "2018-02-24 05:43:52",
+      "sensor": 3,
+      "temperature": 29,
+      "humidity": 45,
+      "distance": 384,
+      "luminosity": 12
+   },
+   {
+      "_id": "5bf54abe5c3b0187207c1339",
+      "index": 9,
+      "date": "2018-11-04 04:03:55",
+      "sensor": 2,
+      "temperature": 13,
+      "humidity": 67,
+      "distance": 511,
+      "luminosity": 65
+   },
+   {
+      "_id": "5bf54abe9e391ecaa571b819",
+      "index": 10,
+      "date": "2018-04-03 10:12:25",
+      "sensor": 4,
+      "temperature": 35,
+      "humidity": 91,
+      "distance": 133,
+      "luminosity": 63
+   },
+   {
+      "_id": "5bf54abe947dab52f0ff3563",
+      "index": 11,
+      "date": "2018-03-12 04:24:51",
+      "sensor": 1,
+      "temperature": 10,
+      "humidity": 94,
+      "distance": 926,
+      "luminosity": 59
+   },
+   {
+      "_id": "5bf54abe5addbc47a7da9ab3",
+      "index": 12,
+      "date": "2018-08-12 04:18:06",
+      "sensor": 0,
+      "temperature": 0,
+      "humidity": 29,
+      "distance": 46,
+      "luminosity": 56
+   },
+   {
+      "_id": "5bf54abefad1cacd65d07d98",
+      "index": 13,
+      "date": "2018-10-11 07:25:33",
+      "sensor": 1,
+      "temperature": 13,
+      "humidity": 14,
+      "distance": 195,
+      "luminosity": 86
+   },
+   {
+      "_id": "5bf54abe439bdfb63654ced0",
+      "index": 14,
+      "date": "2018-07-16 06:33:15",
+      "sensor": 5,
+      "temperature": 31,
+      "humidity": 61,
+      "distance": 622,
+      "luminosity": 7
+   },
+   {
+      "_id": "5bf54abe86ebf4ea78b44afa",
+      "index": 15,
+      "date": "2018-10-17 02:47:22",
+      "sensor": 0,
+      "temperature": 3,
+      "humidity": 21,
+      "distance": 252,
+      "luminosity": 81
+   },
+   {
+      "_id": "5bf54abe17b1dd237e676d70",
+      "index": 16,
+      "date": "2018-11-12 06:30:34",
+      "sensor": 1,
+      "temperature": 25,
+      "humidity": 82,
+      "distance": 207,
+      "luminosity": 23
+   },
+   {
+      "_id": "5bf54abecb9e2d4f68d92c6f",
+      "index": 17,
+      "date": "2018-01-29 08:19:58",
+      "sensor": 0,
+      "temperature": 32,
+      "humidity": 95,
+      "distance": 926,
+      "luminosity": 55
+   },
+   {
+      "_id": "5bf54abeb9eb90a562138893",
+      "index": 18,
+      "date": "2018-08-28 11:19:28",
+      "sensor": 1,
+      "temperature": 40,
+      "humidity": 28,
+      "distance": 314,
+      "luminosity": 20
+   },
+   {
+      "_id": "5bf54abeff4f2321d2b74b2a",
+      "index": 19,
+      "date": "2018-01-02 03:58:51",
+      "sensor": 0,
+      "temperature": 22,
+      "humidity": 98,
+      "distance": 595,
+      "luminosity": 10
+   },
+   {
+      "_id": "5bf54abe8c909c334538a06e",
+      "index": 20,
+      "date": "2018-07-23 01:14:27",
+      "sensor": 0,
+      "temperature": 28,
+      "humidity": 61,
+      "distance": 952,
+      "luminosity": 89
+   },
+   {
+      "_id": "5bf54abef7051a2b2db358cb",
+      "index": 21,
+      "date": "2018-09-20 06:16:41",
+      "sensor": 4,
+      "temperature": 17,
+      "humidity": 92,
+      "distance": 901,
+      "luminosity": 16
+   },
+   {
+      "_id": "5bf54abef1b3fbda738bb9fc",
+      "index": 22,
+      "date": "2018-04-07 03:15:38",
+      "sensor": 1,
+      "temperature": 38,
+      "humidity": 45,
+      "distance": 645,
+      "luminosity": 62
+   },
+   {
+      "_id": "5bf54abe3a2edbfb4a4b5956",
+      "index": 23,
+      "date": "2018-05-31 08:08:58",
+      "sensor": 2,
+      "temperature": 9,
+      "humidity": 85,
+      "distance": 435,
+      "luminosity": 13
+   },
+   {
+      "_id": "5bf54abe98300781c8cae4b6",
+      "index": 24,
+      "date": "2018-09-24 01:25:41",
+      "sensor": 0,
+      "temperature": 23,
+      "humidity": 60,
+      "distance": 985,
+      "luminosity": 89
+   },
+   {
+      "_id": "5bf54abe01415db9e28e37ba",
+      "index": 25,
+      "date": "2018-08-18 10:27:01",
+      "sensor": 2,
+      "temperature": 32,
+      "humidity": 1,
+      "distance": 530,
+      "luminosity": 12
+   },
+   {
+      "_id": "5bf54abe93379bca555e56db",
+      "index": 26,
+      "date": "2018-07-05 03:29:25",
+      "sensor": 2,
+      "temperature": 32,
+      "humidity": 68,
+      "distance": 526,
+      "luminosity": 59
+   },
+   {
+      "_id": "5bf54abed0791b7d0431dd96",
+      "index": 27,
+      "date": "2018-01-17 04:52:34",
+      "sensor": 3,
+      "temperature": 32,
+      "humidity": 69,
+      "distance": 402,
+      "luminosity": 38
+   },
+   {
+      "_id": "5bf54abee3638ae9a49e4e7a",
+      "index": 28,
+      "date": "2018-04-10 05:14:45",
+      "sensor": 5,
+      "temperature": 7,
+      "humidity": 34,
+      "distance": 635,
+      "luminosity": 60
+   },
+   {
+      "_id": "5bf54abe35ad6975cd7fe2e7",
+      "index": 29,
+      "date": "2018-06-11 08:33:14",
+      "sensor": 4,
+      "temperature": 22,
+      "humidity": 42,
+      "distance": 167,
+      "luminosity": 41
+   },
+   {
+      "_id": "5bf54abea23b9b8da462b6db",
+      "index": 30,
+      "date": "2018-10-10 08:18:55",
+      "sensor": 4,
+      "temperature": 29,
+      "humidity": 15,
+      "distance": 519,
+      "luminosity": 33
+   },
+   {
+      "_id": "5bf54abe0cda09791a617ead",
+      "index": 31,
+      "date": "2018-03-15 09:17:19",
+      "sensor": 1,
+      "temperature": 11,
+      "humidity": 14,
+      "distance": 113,
+      "luminosity": 13
+   },
+   {
+      "_id": "5bf54abe5eb3d17054659336",
+      "index": 32,
+      "date": "2018-01-25 11:33:43",
+      "sensor": 2,
+      "temperature": 35,
+      "humidity": 49,
+      "distance": 783,
+      "luminosity": 16
+   },
+   {
+      "_id": "5bf54abe6c5039fa8edd2c9c",
+      "index": 33,
+      "date": "2018-11-05 01:04:36",
+      "sensor": 1,
+      "temperature": 32,
+      "humidity": 88,
+      "distance": 380,
+      "luminosity": 1
+   },
+   {
+      "_id": "5bf54abeb4f011435ced7675",
+      "index": 34,
+      "date": "2018-09-05 06:04:51",
+      "sensor": 1,
+      "temperature": 11,
+      "humidity": 88,
+      "distance": 258,
+      "luminosity": 13
+   },
+   {
+      "_id": "5bf54abe9d20403e6fd1e83a",
+      "index": 35,
+      "date": "2018-09-26 08:34:21",
+      "sensor": 1,
+      "temperature": 24,
+      "humidity": 31,
+      "distance": 877,
+      "luminosity": 71
+   },
+   {
+      "_id": "5bf54abe5d14d930eee95d3c",
+      "index": 36,
+      "date": "2018-10-04 08:24:27",
+      "sensor": 2,
+      "temperature": 31,
+      "humidity": 0,
+      "distance": 556,
+      "luminosity": 64
+   },
+   {
+      "_id": "5bf54abe696d7b22a5d1559a",
+      "index": 37,
+      "date": "2018-01-02 02:28:05",
+      "sensor": 5,
+      "temperature": 23,
+      "humidity": 92,
+      "distance": 253,
+      "luminosity": 3
+   },
+   {
+      "_id": "5bf54abe90f13e3f3debede6",
+      "index": 38,
+      "date": "2018-11-11 07:11:38",
+      "sensor": 3,
+      "temperature": 12,
+      "humidity": 57,
+      "distance": 374,
+      "luminosity": 17
+   },
+   {
+      "_id": "5bf54abec647bd4304dbd1e3",
+      "index": 39,
+      "date": "2018-05-25 02:32:40",
+      "sensor": 4,
+      "temperature": 13,
+      "humidity": 70,
+      "distance": 863,
+      "luminosity": 32
+   },
+   {
+      "_id": "5bf54abe2c3c86a807395263",
+      "index": 40,
+      "date": "2018-03-19 10:50:49",
+      "sensor": 5,
+      "temperature": 22,
+      "humidity": 88,
+      "distance": 887,
+      "luminosity": 48
+   },
+   {
+      "_id": "5bf54abe4e129b6aedc5a81d",
+      "index": 41,
+      "date": "2018-07-13 06:35:53",
+      "sensor": 0,
+      "temperature": 33,
+      "humidity": 56,
+      "distance": 990,
+      "luminosity": 81
+   },
+   {
+      "_id": "5bf54abe1e2229b79c1290d1",
+      "index": 42,
+      "date": "2018-04-09 11:50:21",
+      "sensor": 4,
+      "temperature": 15,
+      "humidity": 89,
+      "distance": 827,
+      "luminosity": 78
+   },
+   {
+      "_id": "5bf54abe497f198f54fc6594",
+      "index": 43,
+      "date": "2018-02-23 01:35:51",
+      "sensor": 5,
+      "temperature": 27,
+      "humidity": 73,
+      "distance": 487,
+      "luminosity": 52
+   },
+   {
+      "_id": "5bf54abe60f042be2a65abf5",
+      "index": 44,
+      "date": "2018-10-06 12:36:59",
+      "sensor": 1,
+      "temperature": 40,
+      "humidity": 11,
+      "distance": 916,
+      "luminosity": 40
+   },
+   {
+      "_id": "5bf54abe2dadf0762e29ede6",
+      "index": 45,
+      "date": "2018-08-26 01:22:06",
+      "sensor": 3,
+      "temperature": 28,
+      "humidity": 3,
+      "distance": 454,
+      "luminosity": 44
+   },
+   {
+      "_id": "5bf54abe0cbd7941bb4909d9",
+      "index": 46,
+      "date": "2018-01-13 02:08:19",
+      "sensor": 0,
+      "temperature": 5,
+      "humidity": 63,
+      "distance": 387,
+      "luminosity": 28
+   },
+   {
+      "_id": "5bf54abed42dbc061ed2e8d6",
+      "index": 47,
+      "date": "2018-08-15 12:03:35",
+      "sensor": 1,
+      "temperature": 11,
+      "humidity": 37,
+      "distance": 715,
+      "luminosity": 71
+   },
+   {
+      "_id": "5bf54abe3a82527611110f4c",
+      "index": 48,
+      "date": "2018-07-05 09:29:25",
+      "sensor": 5,
+      "temperature": 26,
+      "humidity": 70,
+      "distance": 746,
+      "luminosity": 27
+   },
+   {
+      "_id": "5bf54abe2cd85eb9fd92e6b0",
+      "index": 49,
+      "date": "2018-06-05 04:09:42",
+      "sensor": 3,
+      "temperature": 0,
+      "humidity": 24,
+      "distance": 146,
+      "luminosity": 34
+   },
+   {
+      "_id": "5bf54abe6067aca574402e33",
+      "index": 50,
+      "date": "2018-07-29 10:33:21",
+      "sensor": 4,
+      "temperature": 38,
+      "humidity": 73,
+      "distance": 11,
+      "luminosity": 32
+   },
+   {
+      "_id": "5bf54abe24721a9e74dac29a",
+      "index": 51,
+      "date": "2018-09-18 01:42:00",
+      "sensor": 2,
+      "temperature": 30,
+      "humidity": 33,
+      "distance": 781,
+      "luminosity": 71
+   },
+   {
+      "_id": "5bf54abea73f67aed3e5c574",
+      "index": 52,
+      "date": "2018-10-18 11:03:56",
+      "sensor": 0,
+      "temperature": 25,
+      "humidity": 6,
+      "distance": 114,
+      "luminosity": 46
+   },
+   {
+      "_id": "5bf54abecb80074a7bba4fa0",
+      "index": 53,
+      "date": "2018-06-03 08:32:37",
+      "sensor": 4,
+      "temperature": 37,
+      "humidity": 97,
+      "distance": 446,
+      "luminosity": 22
+   },
+   {
+      "_id": "5bf54abed391d7a93e8f4891",
+      "index": 54,
+      "date": "2018-06-13 12:26:00",
+      "sensor": 5,
+      "temperature": 20,
+      "humidity": 65,
+      "distance": 110,
+      "luminosity": 64
+   },
+   {
+      "_id": "5bf54abe4a215b29ba235fae",
+      "index": 55,
+      "date": "2018-01-28 09:06:16",
+      "sensor": 1,
+      "temperature": 23,
+      "humidity": 85,
+      "distance": 5,
+      "luminosity": 95
+   },
+   {
+      "_id": "5bf54abe1c57f2213a684649",
+      "index": 56,
+      "date": "2018-07-01 05:05:42",
+      "sensor": 2,
+      "temperature": 25,
+      "humidity": 52,
+      "distance": 49,
+      "luminosity": 24
+   },
+   {
+      "_id": "5bf54abed4a6d02266e31df4",
+      "index": 57,
+      "date": "2018-06-11 10:42:26",
+      "sensor": 1,
+      "temperature": 39,
+      "humidity": 84,
+      "distance": 99,
+      "luminosity": 92
+   },
+   {
+      "_id": "5bf54abe94d085b0c63c93f0",
+      "index": 58,
+      "date": "2018-11-19 06:30:49",
+      "sensor": 4,
+      "temperature": 8,
+      "humidity": 41,
+      "distance": 680,
+      "luminosity": 46
+   },
+   {
+      "_id": "5bf54abe694cd0ffb16bedb3",
+      "index": 59,
+      "date": "2018-11-12 05:54:22",
+      "sensor": 1,
+      "temperature": 36,
+      "humidity": 44,
+      "distance": 365,
+      "luminosity": 69
+   },
+   {
+      "_id": "5bf54abee234070b84bf7b03",
+      "index": 60,
+      "date": "2018-04-08 01:15:51",
+      "sensor": 1,
+      "temperature": 21,
+      "humidity": 86,
+      "distance": 700,
+      "luminosity": 55
+   },
+   {
+      "_id": "5bf54abe159cc62b593d6202",
+      "index": 61,
+      "date": "2018-01-15 07:34:05",
+      "sensor": 1,
+      "temperature": 39,
+      "humidity": 80,
+      "distance": 233,
+      "luminosity": 24
+   },
+   {
+      "_id": "5bf54abe8babe72ec95e63a3",
+      "index": 62,
+      "date": "2018-01-14 04:02:17",
+      "sensor": 3,
+      "temperature": 3,
+      "humidity": 87,
+      "distance": 682,
+      "luminosity": 75
+   },
+   {
+      "_id": "5bf54abe11bde64a6353f029",
+      "index": 63,
+      "date": "2018-01-22 04:24:13",
+      "sensor": 3,
+      "temperature": 4,
+      "humidity": 73,
+      "distance": 644,
+      "luminosity": 63
+   },
+   {
+      "_id": "5bf54abe2ded2c6f1483e128",
+      "index": 64,
+      "date": "2018-02-27 07:20:23",
+      "sensor": 3,
+      "temperature": 15,
+      "humidity": 50,
+      "distance": 979,
+      "luminosity": 93
+   },
+   {
+      "_id": "5bf54abe7d2a3d0742d5e1b1",
+      "index": 65,
+      "date": "2018-08-08 02:43:35",
+      "sensor": 5,
+      "temperature": 9,
+      "humidity": 83,
+      "distance": 472,
+      "luminosity": 72
+   },
+   {
+      "_id": "5bf54abec9e1777e24fd1a84",
+      "index": 66,
+      "date": "2018-01-04 07:42:56",
+      "sensor": 2,
+      "temperature": 27,
+      "humidity": 48,
+      "distance": 72,
+      "luminosity": 42
+   },
+   {
+      "_id": "5bf54abe2870ce3b7099f4a0",
+      "index": 67,
+      "date": "2018-10-14 07:12:38",
+      "sensor": 2,
+      "temperature": 30,
+      "humidity": 5,
+      "distance": 711,
+      "luminosity": 87
+   },
+   {
+      "_id": "5bf54abe95af1bbda35989f0",
+      "index": 68,
+      "date": "2018-02-03 12:00:51",
+      "sensor": 5,
+      "temperature": 11,
+      "humidity": 24,
+      "distance": 957,
+      "luminosity": 61
+   },
+   {
+      "_id": "5bf54abe7d317a7baa8e01e2",
+      "index": 69,
+      "date": "2018-06-26 02:02:51",
+      "sensor": 2,
+      "temperature": 10,
+      "humidity": 85,
+      "distance": 85,
+      "luminosity": 49
+   },
+   {
+      "_id": "5bf54abe3db67cd805f83c04",
+      "index": 70,
+      "date": "2018-05-26 08:38:12",
+      "sensor": 3,
+      "temperature": 12,
+      "humidity": 32,
+      "distance": 990,
+      "luminosity": 28
+   },
+   {
+      "_id": "5bf54abed76f86cd5f83cde2",
+      "index": 71,
+      "date": "2018-03-09 12:06:33",
+      "sensor": 5,
+      "temperature": 25,
+      "humidity": 15,
+      "distance": 253,
+      "luminosity": 93
+   },
+   {
+      "_id": "5bf54abe70fab7546fcdabf3",
+      "index": 72,
+      "date": "2018-01-16 04:00:53",
+      "sensor": 5,
+      "temperature": 35,
+      "humidity": 30,
+      "distance": 89,
+      "luminosity": 62
+   },
+   {
+      "_id": "5bf54abea0b328b74b544874",
+      "index": 73,
+      "date": "2018-06-29 09:55:34",
+      "sensor": 4,
+      "temperature": 15,
+      "humidity": 62,
+      "distance": 613,
+      "luminosity": 28
+   },
+   {
+      "_id": "5bf54abeb3985a9726d77261",
+      "index": 74,
+      "date": "2018-09-02 09:54:04",
+      "sensor": 1,
+      "temperature": 22,
+      "humidity": 94,
+      "distance": 126,
+      "luminosity": 4
+   },
+   {
+      "_id": "5bf54abe53d85aa696edbc56",
+      "index": 75,
+      "date": "2018-05-05 11:01:02",
+      "sensor": 5,
+      "temperature": 38,
+      "humidity": 62,
+      "distance": 814,
+      "luminosity": 92
+   },
+   {
+      "_id": "5bf54abec092a7cf28692bc8",
+      "index": 76,
+      "date": "2018-09-07 07:13:23",
+      "sensor": 3,
+      "temperature": 9,
+      "humidity": 6,
+      "distance": 294,
+      "luminosity": 66
+   },
+   {
+      "_id": "5bf54abe4663e5d8969533bd",
+      "index": 77,
+      "date": "2018-07-08 12:48:06",
+      "sensor": 2,
+      "temperature": 7,
+      "humidity": 95,
+      "distance": 905,
+      "luminosity": 62
+   },
+   {
+      "_id": "5bf54abed2401e3edfbac3f3",
+      "index": 78,
+      "date": "2018-09-12 02:13:00",
+      "sensor": 1,
+      "temperature": 18,
+      "humidity": 33,
+      "distance": 992,
+      "luminosity": 7
+   },
+   {
+      "_id": "5bf54abe04249d1fbefa739c",
+      "index": 79,
+      "date": "2018-06-01 05:42:06",
+      "sensor": 5,
+      "temperature": 30,
+      "humidity": 55,
+      "distance": 188,
+      "luminosity": 47
+   },
+   {
+      "_id": "5bf54abefe00199be4f33caa",
+      "index": 80,
+      "date": "2018-03-29 04:53:59",
+      "sensor": 3,
+      "temperature": 18,
+      "humidity": 71,
+      "distance": 103,
+      "luminosity": 60
+   },
+   {
+      "_id": "5bf54abe379ab9f80121057d",
+      "index": 81,
+      "date": "2018-06-27 10:14:39",
+      "sensor": 4,
+      "temperature": 40,
+      "humidity": 50,
+      "distance": 837,
+      "luminosity": 81
+   },
+   {
+      "_id": "5bf54abeb1a95ea8ecd10354",
+      "index": 82,
+      "date": "2018-10-27 01:03:28",
+      "sensor": 3,
+      "temperature": 39,
+      "humidity": 77,
+      "distance": 478,
+      "luminosity": 10
+   },
+   {
+      "_id": "5bf54abe8795746de345cc51",
+      "index": 83,
+      "date": "2018-11-11 04:12:50",
+      "sensor": 1,
+      "temperature": 17,
+      "humidity": 74,
+      "distance": 342,
+      "luminosity": 32
+   },
+   {
+      "_id": "5bf54abe7763818e1e24c99d",
+      "index": 84,
+      "date": "2018-09-20 04:09:37",
+      "sensor": 3,
+      "temperature": 27,
+      "humidity": 2,
+      "distance": 453,
+      "luminosity": 93
+   },
+   {
+      "_id": "5bf54abec8507f94b0e12fda",
+      "index": 85,
+      "date": "2018-06-10 12:16:09",
+      "sensor": 5,
+      "temperature": 11,
+      "humidity": 5,
+      "distance": 802,
+      "luminosity": 63
+   },
+   {
+      "_id": "5bf54abec868cdfa93660e1d",
+      "index": 86,
+      "date": "2018-01-28 10:48:01",
+      "sensor": 2,
+      "temperature": 19,
+      "humidity": 56,
+      "distance": 667,
+      "luminosity": 3
+   },
+   {
+      "_id": "5bf54abedd0bcb5fd68b7ddc",
+      "index": 87,
+      "date": "2018-06-06 08:52:33",
+      "sensor": 5,
+      "temperature": 15,
+      "humidity": 64,
+      "distance": 444,
+      "luminosity": 5
+   },
+   {
+      "_id": "5bf54abe721c9e4b537028b3",
+      "index": 88,
+      "date": "2018-02-20 02:58:59",
+      "sensor": 4,
+      "temperature": 26,
+      "humidity": 62,
+      "distance": 303,
+      "luminosity": 4
+   },
+   {
+      "_id": "5bf54abece5c5a144f80076b",
+      "index": 89,
+      "date": "2018-01-28 12:42:31",
+      "sensor": 3,
+      "temperature": 13,
+      "humidity": 58,
+      "distance": 74,
+      "luminosity": 18
+   },
+   {
+      "_id": "5bf54abe7e345948c62ebec6",
+      "index": 90,
+      "date": "2018-07-07 11:21:19",
+      "sensor": 4,
+      "temperature": 13,
+      "humidity": 50,
+      "distance": 503,
+      "luminosity": 88
+   },
+   {
+      "_id": "5bf54abe9d54777713768418",
+      "index": 91,
+      "date": "2018-04-04 03:21:39",
+      "sensor": 4,
+      "temperature": 14,
+      "humidity": 38,
+      "distance": 414,
+      "luminosity": 91
+   },
+   {
+      "_id": "5bf54abef464bcf960dd6f8b",
+      "index": 92,
+      "date": "2018-09-23 02:31:53",
+      "sensor": 5,
+      "temperature": 36,
+      "humidity": 54,
+      "distance": 652,
+      "luminosity": 28
+   },
+   {
+      "_id": "5bf54abeccc23d918b482531",
+      "index": 93,
+      "date": "2018-09-20 10:37:32",
+      "sensor": 3,
+      "temperature": 22,
+      "humidity": 61,
+      "distance": 119,
+      "luminosity": 64
+   },
+   {
+      "_id": "5bf54abef9f19643681915de",
+      "index": 94,
+      "date": "2018-06-13 12:32:57",
+      "sensor": 0,
+      "temperature": 34,
+      "humidity": 36,
+      "distance": 362,
+      "luminosity": 30
+   },
+   {
+      "_id": "5bf54abe7e9ef49d0790362a",
+      "index": 95,
+      "date": "2018-01-04 09:10:49",
+      "sensor": 3,
+      "temperature": 36,
+      "humidity": 85,
+      "distance": 277,
+      "luminosity": 90
+   },
+   {
+      "_id": "5bf54abe39fdbc0f9ad56085",
+      "index": 96,
+      "date": "2018-02-06 09:26:29",
+      "sensor": 2,
+      "temperature": 32,
+      "humidity": 42,
+      "distance": 428,
+      "luminosity": 54
+   },
+   {
+      "_id": "5bf54abe7cffdd955f347f3e",
+      "index": 97,
+      "date": "2018-05-17 03:58:43",
+      "sensor": 4,
+      "temperature": 10,
+      "humidity": 14,
+      "distance": 964,
+      "luminosity": 78
+   },
+   {
+      "_id": "5bf54abe91fc1df9457197f2",
+      "index": 98,
+      "date": "2018-04-26 03:38:49",
+      "sensor": 4,
+      "temperature": 24,
+      "humidity": 52,
+      "distance": 482,
+      "luminosity": 45
+   },
+   {
+      "_id": "5bf54abec1b3bfb0861c406c",
+      "index": 99,
+      "date": "2018-02-06 11:17:38",
+      "sensor": 3,
+      "temperature": 25,
+      "humidity": 44,
+      "distance": 598,
+      "luminosity": 16
+   }
+]
