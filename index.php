@@ -20,7 +20,6 @@
 <?php
 
 // TODO: create modal for detailed inspect of a sensor
-// TODO: only display newest values for every sensor
 // TODO: connect to cloud data rather then local test data
 
 $file = "testData.json";
@@ -42,14 +41,12 @@ for ($i = 1; $i < sizeof($json); $i++) {
     }
     else {
         for ($k = $i - $j - 1; $k < $i; $k++){
-            if ($json[$k]['date'] > $sensorArray[$l]['date']){
+            if ($json[$k]['date'] >= $sensorArray[$l]['date']){
                 $sensorArray[$l] = $json[$k];
             }
         }
-        //echo("<script>console.log('PHP: ".$i." ".$j."');</script>");
-        //echo("<script>console.log('PHP: Sensor ".$sensorArray[$l]['sensor'].": Current Highest Date: ".$sensorArray[$l]['date']."');</script>");
-        array_push($sensorArray, array($json[$i]));
 
+        $sensorArray[] = $json[$i];
         $j = 0;
         $l++;
     }
@@ -58,7 +55,7 @@ for ($i = 1; $i < sizeof($json); $i++) {
 
 // dynamically create cards with values
 echo "<main class='container-fluid'>";
-foreach ($json as $item) {
+foreach ($sensorArray as $item) {
 
     if ($i % 4 == 0 || $i == 0) {
         if ($i % 4 == 0) {
