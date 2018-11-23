@@ -38,10 +38,9 @@ for ($i = 1; $i < sizeof($json); $i++) {
 
     if ($json[$i]['sensor'] == $json[$i - 1]['sensor'] && $json[$i] != end($json)) {
         $j++;
-    }
-    else {
-        for ($k = $i - $j - 1; $k < $i; $k++){
-            if ($json[$k]['date'] >= $sensorArray[$l]['date']){
+    } else {
+        for ($k = $i - $j - 1; $k < $i; $k++) {
+            if ($json[$k]['date'] >= $sensorArray[$l]['date']) {
                 $sensorArray[$l] = $json[$k];
             }
         }
@@ -55,55 +54,66 @@ for ($i = 1; $i < sizeof($json); $i++) {
 
 // dynamically create cards with values
 echo "<main class='container-fluid'>";
-foreach ($sensorArray as $item) {
+
+echo("<script>console.log('PHP: ".sizeof($sensorArray)."');</script>");
+
+for ($i = 0; $i < sizeof($sensorArray); $i++){
+    echo("<script>console.log('PHP: ".$i."');</script>");
+}
+
+$i = 0;
+
+for ($i = 0; $i < sizeof($sensorArray); $i++){
 
     if ($i % 4 == 0 || $i == 0) {
-        if ($i % 4 == 0) {
-            echo "</div>";
-        }
+
         echo "<div class='row'>";
     }
 
-    echo "<div class='col-3'>";
-    echo "<div class='card' id='card_" . $i . "'>";
-    echo "<div class='card-header'>";
-    echo "<span>Sensor " . $item['sensor'] . "</span>";
-    echo "</div>";
-    echo "<div class='card-body'>";
-    echo "<div class='row'>";
-    echo "<div class='col-4'>";
-    echo "<label for='tempField'>Temperature</label>";
-    echo "</div>";
-    echo "<div class='col-2'>";
-    echo "<span id='tempField'>" . $item['temperature'] . "</span>";
-    echo "</div>";
-    echo "<div class='col-4'>";
-    echo "<label for='distField'>Distance</label>";
-    echo "</div>";
-    echo "<div class='col-2'>";
-    echo "<span id='distField'>" . $item['distance'] . "</span>";
-    echo "</div>";
-    echo "</div>";
-    echo "<div class='row'>";
-    echo "<div class='col-4'>";
-    echo "<label for='humiField'>Humidity</label>";
-    echo "</div>";
-    echo "<div class='col-2'>";
-    echo "<span id='humiField'>" . $item['humidity'] . "</span>";
-    echo "</div>";
-    echo "<div class='col-4'>";
-    echo "<label for='lumiField'>Luminosity</label>";
-    echo "</div>";
-    echo "<div class='col-2'>";
-    echo "<span id='lumiField'>" . $item['luminosity'] . "</span>";
-    echo "</div>";
-    echo "</div>";
-    echo "</div>";
-    echo "<div class='card-footer'>";
-    echo "<span>" . $item['date'] . "</span>";
-    echo "</div>";
-    echo "</div>";
-    echo "</div>";
+    echo "<div class='col-3'>
+            <div class='card' id='card_" . $i . "'>
+                <div class='card-header'>
+                    <span>Sensor " . $sensorArray[$i]['sensor'] . "</span>
+                </div>
+                <div class='card-body'>
+                    <div class='row'>
+                        <div class='col-4'>
+                            <label for='tempField'>Temperature</label>
+                        </div>
+                        <div class='col-2'>
+                            <span id='tempField'>" . $sensorArray[$i]['temperature'] . "</span>
+                        </div>
+                        <div class='col-4'>
+                            <label for='distField'>Distance</label>
+                        </div>
+                        <div class='col-2'>
+                            <span id='distField'>" . $sensorArray[$i]['distance'] . "</span>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-4'>
+                            <label for='humiField'>Humidity</label>
+                        </div>
+                        <div class='col-2'>
+                            <span id='humiField'>" . $sensorArray[$i]['humidity'] . "</span>
+                        </div>
+                        <div class='col-4'>
+                            <label for='lumiField'>Luminosity</label>
+                        </div>
+                        <div class='col-2'>
+                            <span id='lumiField'>" . $sensorArray[$i]['luminosity'] . "</span>
+                        </div>
+                    </div>
+                </div>
+                <div class='card-footer'>
+                    <span>" . $sensorArray[$i]['date'] . "</span>
+                </div>
+            </div>
+    </div>";
+
+    if ($i % 4 == 3 || $i == sizeof($sensorArray) - 1) {
+        echo "</div>";
+    }
 
     $i++;
 }
