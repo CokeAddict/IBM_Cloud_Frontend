@@ -19,7 +19,7 @@
 
 <?php
 
-// TODO: create modal for detailed inspect of a sensor
+// TODO: create modal for detailed inspection of a sensor
 // TODO: connect to cloud data rather then local test data
 
 $file = "testData.json";
@@ -34,13 +34,13 @@ $sensorArray = array($json[0]);
 $j = 0;
 $l = 0;
 
-for ($i = 1; $i < sizeof($json); $i++) {
+for ($i = 0; $i < sizeof($json) - 1; $i++) {
 
-    if ($json[$i]['sensor'] == $json[$i - 1]['sensor'] && $json[$i] != end($json)) {
+    if ($json[$i]['sensor'] == $json[$i + 1]['sensor'] && $json[$i + 1] != end($json)) {
         $j++;
-    } else {
-        for ($k = $i - $j - 1; $k < $i; $k++) {
-            if ($json[$k]['date'] >= $sensorArray[$l]['date']) {
+    } elseif ($json[$i + 1] != end($json)) {
+        for ($k = $i - $j; $k < $i; $k++) {
+            if ($json[$k]['date'] > $sensorArray[$l]['date']) {
                 $sensorArray[$l] = $json[$k];
             }
         }
@@ -48,22 +48,21 @@ for ($i = 1; $i < sizeof($json); $i++) {
         $sensorArray[] = $json[$i];
         $j = 0;
         $l++;
+    } else {
+        for ($k = $i - $j; $k < $i; $k++) {
+            if ($json[$k]['date'] > $sensorArray[$l]['date']) {
+                $sensorArray[$l] = $json[$k];
+            }
+        }
     }
 }
 
+//echo("<script>console.log('PHP: ".sizeof($sensorArray)."');</script>");
 
 // dynamically create cards with values
 echo "<main class='container-fluid'>";
 
-echo("<script>console.log('PHP: ".sizeof($sensorArray)."');</script>");
-
-for ($i = 0; $i < sizeof($sensorArray); $i++){
-    echo("<script>console.log('PHP: ".$i."');</script>");
-}
-
-$i = 0;
-
-for ($i = 0; $i < sizeof($sensorArray); $i++){
+for ($i = 0; $i < sizeof($sensorArray); $i++) {
 
     if ($i % 4 == 0 || $i == 0) {
 
@@ -114,9 +113,62 @@ for ($i = 0; $i < sizeof($sensorArray); $i++){
     if ($i % 4 == 3 || $i == sizeof($sensorArray) - 1) {
         echo "</div>";
     }
-
-    $i++;
 }
+
+/*
+for ($i = 0; $i < sizeof($json); $i++){
+
+    if ($i % 4 == 0 || $i == 0) {
+
+        echo "<div class='row'>";
+    }
+
+    echo "<div class='col-3'>
+            <div class='card' id='card_" . $i . "'>
+                <div class='card-header'>
+                    <span>Sensor " . $json[$i]['sensor'] . "</span>
+                </div>
+                <div class='card-body'>
+                    <div class='row'>
+                        <div class='col-4'>
+                            <label for='tempField'>Temperature</label>
+                        </div>
+                        <div class='col-2'>
+                            <span id='tempField'>" . $json[$i]['temperature'] . "</span>
+                        </div>
+                        <div class='col-4'>
+                            <label for='distField'>Distance</label>
+                        </div>
+                        <div class='col-2'>
+                            <span id='distField'>" . $json[$i]['distance'] . "</span>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-4'>
+                            <label for='humiField'>Humidity</label>
+                        </div>
+                        <div class='col-2'>
+                            <span id='humiField'>" . $json[$i]['humidity'] . "</span>
+                        </div>
+                        <div class='col-4'>
+                            <label for='lumiField'>Luminosity</label>
+                        </div>
+                        <div class='col-2'>
+                            <span id='lumiField'>" . $json[$i]['luminosity'] . "</span>
+                        </div>
+                    </div>
+                </div>
+                <div class='card-footer'>
+                    <span>" . $json[$i]['date'] . "</span>
+                </div>
+            </div>
+    </div>";
+
+    if ($i % 4 == 3 || $i == sizeof($json) - 1) {
+        echo "</div>";
+    }
+}
+*/
 echo "</main>";
 
 ?>
