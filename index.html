@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-sclae=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!--bootstrap integration-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!--other css integration-->
+    <link rel="stylesheet" href="rowStyle.css">
+
+    <title>Dashboard</title>
+</head>
+<body>
+
+<main class="container-fluid">
+
+</main>
+
+<!--scripting-->
+<!--jquery integration-->
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+
+<script>
+    //var json = [];
+
+    $(document).ready(function () {
+        $("main").append("<span>Test</span>");
+
+        $.ajax({
+            url: "https://htw-iiot-cloud.eu-gb.mybluemix.net/",
+        }).then(function (data) {
+            console.log("shit works yo");
+
+            /*
+            $('').append(data.sensorId);
+            $('').append(data.temperature);
+            $('').append(data.humidity);
+            $('').append(data.lightIntensity);
+            $('').append(data.distance);
+            $('').append(data.dateTimeString);
+            */
+        });
+    });
+
+
+    /*
+    var cards = document.getElementsByClassName('card');
+
+    $(document).ready(function () {
+        $(cards).click(function () {
+            console.log('Card ' + this.id + ' has been clicked!');
+        });
+    });
+    */
+</script>
+
+</body>
+</html>
