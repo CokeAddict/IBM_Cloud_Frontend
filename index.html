@@ -49,9 +49,12 @@
 
     function GenerateHTML(array) {
         if (Array.isArray(array)) {
+            let rowId = 0;
+
             for (let i = 0; i < array.length; i++) {
                 if (i % 4 == 0 || i == 0) {
-                    $("main").append("<div class='row' id='row_" + i + "'>");
+                    $("main").append("<div class='row' id='" + rowId + "'>");
+                    rowId++;
                 }
 
                 $("main").append("<div class='col-3'>" +
