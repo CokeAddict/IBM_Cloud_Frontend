@@ -22,7 +22,6 @@
 
 <!--scripting-->
 <!--jquery integration-->
-
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -33,7 +32,7 @@
 
 
 <script>
-
+    let cards = document.getElementsByClassName('card');
     let sensorString = "sensor";
     let dateString = "date";
     let temperatureString = "temperature";
@@ -41,10 +40,60 @@
     let luminosityString = "luminosity";
     let distanceString = "distance";
 
+    $(document).ready(function () {
+        $.getJSON("testData.json", function (data) {
+            data.sort(SortBySensor);
+            let sensorArray = BuildSensorArray(data);
+            GenerateHTML(sensorArray);
+        });
+    });
+
+    $(cards).click(function () {
+        console.log('Card ' + this.id + ' has been clicked!');
+    });
+
+    /**
+     * @return {number}
+     */
     function SortBySensor(a, b) {
         let aSensor = a[sensorString];
         let bSensor = b[sensorString];
         return ((aSensor < bSensor) ? -1 : ((aSensor > bSensor) ? 1 : 0));
+    }
+
+    function BuildSensorArray(array){
+        if (Array.isArray(array)){
+            let sensorArray = [];
+            sensorArray.push(array[0]);
+            let i;
+            let j = 0;
+            let k;
+            let l = 0;
+
+            for (i = 0; i < array.length - 1; i++){
+                if (array[i][sensorString] === array[i + 1][sensorString] && array[i + 1] !== array[array.length - 1]){
+                    j++;
+                } else if (array[i + 1] !== array[array.length - 1]){
+                    for (k = i - j; k < i; k++){
+                        if (array[k][dateString] > sensorArray[l][dateString]){
+                            sensorArray[l] = array[k];
+                        }
+                    }
+
+                    sensorArray.push(array[i+1]);
+                    j = 0;
+                    l++;
+                } else {
+                    for (let k = i - j; k < i; k++){
+                        if (array[k][dateString] > sensorArray[l][dateString]){
+                            sensorArray[l] = array[k];
+                        }
+                    }
+                }
+            }
+
+            return sensorArray;
+        }
     }
 
     function GenerateHTML(array) {
@@ -52,7 +101,7 @@
             let rowId = 0;
 
             for (let i = 0; i < array.length; i++) {
-                if (i % 4 == 0 || i == 0) {
+                if (i % 4 === 0 || i === 0) {
                     $("main").append("<div class='row' id='" + rowId + "'>");
                     rowId++;
                 }
@@ -98,52 +147,13 @@
                     "   </div> " +
                     "</div>");
 
-                if (i % 4 == 3 || i == array.length - 1) {
+                if (i % 4 === 3 || i === array.length - 1) {
                     $("main").append("</div>");
                 }
             }
         }
     }
 
-    $(document).ready(function () {
-        $.getJSON("testData.json", function (data) {
-
-            //sort received data-array by sensor_id
-            data.sort(SortBySensor);
-            GenerateHTML(data);
-
-            // loop through received data and generate html
-            $.each(data, function (index, value) {
-                //console.log(index + " " + value[sensorString]);
-            });
-        });
-    });
-
-    /*
-$.ajax({
-url: "https://htw-iiot-cloud.eu-gb.mybluemix.net/",
-}).then(function (data) {
-console.log("shit works yo");
-
-$('').append(data.sensorId);
-$('').append(data.temperature);
-$('').append(data.humidity);
-$('').append(data.lightIntensity);
-$('').append(data.distance);
-$('').append(data.dateTimeString);
-
-});
-*/
-
-    /*
-    var cards = document.getElementsByClassName('card');
-
-    $(document).ready(function () {
-        $(cards).click(function () {
-            console.log('Card ' + this.id + ' has been clicked!');
-        });
-    });
-    */
 </script>
 
 </body>
