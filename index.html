@@ -33,27 +33,104 @@
 
 
 <script>
-    //var json = [];
+
+    let sensorString = "sensor";
+    let dateString = "date";
+    let temperatureString = "temperature";
+    let humidityString = "humidity";
+    let luminosityString = "luminosity";
+    let distanceString = "distance";
+
+    function SortBySensor(a, b) {
+        let aSensor = a[sensorString];
+        let bSensor = b[sensorString];
+        return ((aSensor < bSensor) ? -1 : ((aSensor > bSensor) ? 1 : 0));
+    }
+
+    function GenerateHTML(array) {
+        if (Array.isArray(array)) {
+            for (let i = 0; i < array.length; i++) {
+                if (i % 4 == 0 || i == 0) {
+                    $("main").append("<div class='row' id='row_" + i + "'>");
+                }
+
+                $("main").append("<div class='col-3'>" +
+                    "   <div class='card' id='card_" + i + "'>" +
+                    "       <div class='card-header'>" +
+                    "           <span>Sensor " + array[i][sensorString] + "</span>" +
+                    "       </div> " +
+                    "       <div class='card-body'>" +
+                    "           <div class='row'>" +
+                    "               <div class='col-3'>" +
+                    "                   <label for='tempField'>Temperature</label>" +
+                    "               </div>" +
+                    "               <div class='col-3'>" +
+                    "                   <span id='tempField'>" + array[i][temperatureString] + "</span>" +
+                    "               </div>" +
+                    "               <div class='col-3'>" +
+                    "                   <label for='distField'>Distance</label>" +
+                    "               </div>" +
+                    "               <div class='col-3'>" +
+                    "                   <span id='distField'>" + array[i][distanceString] + "</span>" +
+                    "               </div>" +
+                    "           </div>" +
+                    "           <div class='row'>" +
+                    "               <div class='col-3'>" +
+                    "                   <label for='humiField'>Humidity</label>" +
+                    "               </div>" +
+                    "               <div class='col-3'>" +
+                    "                   <span id='humiField'>" + array[i][humidityString] + "</span>" +
+                    "               </div>" +
+                    "               <div class='col-3'>" +
+                    "                   <label for='lumiField'>Luminosity</label>" +
+                    "               </div>" +
+                    "               <div class='col-3'>" +
+                    "                   <span id='lumiField'>" + array[i][luminosityString] + "</span>" +
+                    "               </div>" +
+                    "           </div>" +
+                    "       </div>" +
+                    "       <div class='card-footer'>" +
+                    "           <span>" + array[i][dateString] + "</span>" +
+                    "       </div>" +
+                    "   </div> " +
+                    "</div>");
+
+                if (i % 4 == 3 || i == array.length - 1) {
+                    $("main").append("</div>");
+                }
+            }
+        }
+    }
 
     $(document).ready(function () {
-        $("main").append("<span>Test</span>");
+        $.getJSON("testData.json", function (data) {
 
-        $.ajax({
-            url: "https://htw-iiot-cloud.eu-gb.mybluemix.net/",
-        }).then(function (data) {
-            console.log("shit works yo");
+            //sort received data-array by sensor_id
+            data.sort(SortBySensor);
+            GenerateHTML(data);
 
-            /*
-            $('').append(data.sensorId);
-            $('').append(data.temperature);
-            $('').append(data.humidity);
-            $('').append(data.lightIntensity);
-            $('').append(data.distance);
-            $('').append(data.dateTimeString);
-            */
+            // loop through received data and generate html
+            $.each(data, function (index, value) {
+                //console.log(index + " " + value[sensorString]);
+            });
         });
     });
 
+    /*
+$.ajax({
+url: "https://htw-iiot-cloud.eu-gb.mybluemix.net/",
+}).then(function (data) {
+console.log("shit works yo");
+
+$('').append(data.sensorId);
+$('').append(data.temperature);
+$('').append(data.humidity);
+$('').append(data.lightIntensity);
+$('').append(data.distance);
+$('').append(data.dateTimeString);
+
+});
+*/
 
     /*
     var cards = document.getElementsByClassName('card');

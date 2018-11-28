@@ -25,14 +25,18 @@
 $file = "testData.json";
 $json = json_decode(file_get_contents($file), true);
 
-usort($json, function ($a, $b) {
-    return $a['sensor'] <=> $b['sensor'];
-});
 
-
+// sorting logic
+// first: sort everything by sensor id
+// then: get newest entry of every sensor
+// return: $sensorArray with newest entry of every sensor
 $sensorArray = array($json[0]);
 $j = 0;
 $l = 0;
+
+usort($json, function ($a, $b) {
+    return $a['sensor'] <=> $b['sensor'];
+});
 
 for ($i = 0; $i < sizeof($json) - 1; $i++) {
 
@@ -57,9 +61,9 @@ for ($i = 0; $i < sizeof($json) - 1; $i++) {
     }
 }
 
-//echo("<script>console.log('PHP: ".sizeof($sensorArray)."');</script>");
 
-// dynamically create cards with values
+// dynamically create cards and modals for every sensor
+// TODO: adapt responsive design
 echo "<main class='container-fluid'>";
 
 for ($i = 0; $i < sizeof($sensorArray); $i++) {
@@ -115,60 +119,6 @@ for ($i = 0; $i < sizeof($sensorArray); $i++) {
     }
 }
 
-/*
-for ($i = 0; $i < sizeof($json); $i++){
-
-    if ($i % 4 == 0 || $i == 0) {
-
-        echo "<div class='row'>";
-    }
-
-    echo "<div class='col-3'>
-            <div class='card' id='card_" . $i . "'>
-                <div class='card-header'>
-                    <span>Sensor " . $json[$i]['sensor'] . "</span>
-                </div>
-                <div class='card-body'>
-                    <div class='row'>
-                        <div class='col-4'>
-                            <label for='tempField'>Temperature</label>
-                        </div>
-                        <div class='col-2'>
-                            <span id='tempField'>" . $json[$i]['temperature'] . "</span>
-                        </div>
-                        <div class='col-4'>
-                            <label for='distField'>Distance</label>
-                        </div>
-                        <div class='col-2'>
-                            <span id='distField'>" . $json[$i]['distance'] . "</span>
-                        </div>
-                    </div>
-                    <div class='row'>
-                        <div class='col-4'>
-                            <label for='humiField'>Humidity</label>
-                        </div>
-                        <div class='col-2'>
-                            <span id='humiField'>" . $json[$i]['humidity'] . "</span>
-                        </div>
-                        <div class='col-4'>
-                            <label for='lumiField'>Luminosity</label>
-                        </div>
-                        <div class='col-2'>
-                            <span id='lumiField'>" . $json[$i]['luminosity'] . "</span>
-                        </div>
-                    </div>
-                </div>
-                <div class='card-footer'>
-                    <span>" . $json[$i]['date'] . "</span>
-                </div>
-            </div>
-    </div>";
-
-    if ($i % 4 == 3 || $i == sizeof($json) - 1) {
-        echo "</div>";
-    }
-}
-*/
 echo "</main>";
 
 ?>
@@ -185,6 +135,17 @@ echo "</main>";
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+
+<script>
+    var cards = document.getElementsByClassName('card');
+
+    $(document).ready(function () {
+        $(cards).click(function () {
+            console.log('Card ' + this.id + ' has been clicked!');
+        });
+    });
+
+</script>
 
 </body>
 </html>
