@@ -47,6 +47,20 @@
             GenerateHTML(sensorArray);
         });
 
+        //reload content periodically (every minute => 60000ms = 1min)
+        setInterval(function(){
+            //clear html from main
+            $("main").empty();
+
+            //refill main with the established methods
+            $.getJSON("testData.json", function (data) {
+                data.sort(SortBySensor);
+                let sensorArray = BuildSensorArray(data);
+                GenerateHTML(sensorArray);
+            });
+        }, 60000);
+
+
         $(cards).click(function () {
             console.log('Card ' + this.id + ' has been clicked!');
         });
