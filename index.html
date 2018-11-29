@@ -48,9 +48,11 @@
         });
     });
 
+    /*
     $(cards).click(function () {
         console.log('Card ' + this.id + ' has been clicked!');
     });
+    */
 
     /**
      * @return {number}
@@ -98,15 +100,14 @@
 
     function GenerateHTML(array) {
         if (Array.isArray(array)) {
-            let rowId = 0;
+            let htmlString = "";
 
             for (let i = 0; i < array.length; i++) {
                 if (i % 4 === 0 || i === 0) {
-                    $("main").append("<div class='row' id='" + rowId + "'>");
-                    rowId++;
+                    htmlString += "<div class='row'>";
                 }
 
-                $("main").append("<div class='col-3'>" +
+                htmlString += "<div class='col-3'>" +
                     "   <div class='card' id='card_" + i + "'>" +
                     "       <div class='card-header'>" +
                     "           <span>Sensor " + array[i][sensorString] + "</span>" +
@@ -145,12 +146,14 @@
                     "           <span>" + array[i][dateString] + "</span>" +
                     "       </div>" +
                     "   </div> " +
-                    "</div>");
+                    "</div>";
 
                 if (i % 4 === 3 || i === array.length - 1) {
-                    $("main").append("</div>");
+                    htmlString += "</div>";
                 }
             }
+
+            $("main").append(htmlString);
         }
     }
 
