@@ -32,7 +32,6 @@
 
 
 <script>
-    let cards = document.getElementsByClassName('card');
     let sensorString = "sensor";
     let dateString = "date";
     let temperatureString = "temperature";
@@ -40,28 +39,32 @@
     let luminosityString = "luminosity";
     let distanceString = "distance";
 
+    let main = $("main");   //main body element
+    let sensorArray;        //aggregated array containing all available sensors
+    let generatedHTML;      //dynamically generated html code for appending to the main body element
+
     $(document).ready(function () {
         $.getJSON("testData.json", function (data) {
             data.sort(SortBySensor);
-            let sensorArray = BuildSensorArray(data);
-            GenerateHTML(sensorArray);
+            sensorArray = BuildSensorArray(data);
+            generatedHTML = GenerateHTML(sensorArray);
+            main.append(generatedHTML);
         });
 
         //reload content periodically (every minute => 60000ms = 1min)
         setInterval(function(){
-            //clear html from main
-            $("main").empty();
-
-            //refill main with the established methods
             $.getJSON("testData.json", function (data) {
                 data.sort(SortBySensor);
-                let sensorArray = BuildSensorArray(data);
-                GenerateHTML(sensorArray);
+                sensorArray = BuildSensorArray(data);
+                generatedHTML = GenerateHTML(sensorArray);
+                //clear html from main
+                main.empty();
+                //refill main with the established methods
+                main.append(generatedHTML);
             });
-        }, 60000);
+        }, 10000);
 
-
-        $(cards).click(function () {
+        main.on('click', 'div.card', function () {
             console.log('Card ' + this.id + ' has been clicked!');
         });
     });
@@ -110,6 +113,9 @@
         }
     }
 
+    /**
+     * @return {string}
+     */
     function GenerateHTML(array) {
         if (Array.isArray(array)) {
             let htmlString = "";
@@ -165,7 +171,7 @@
                 }
             }
 
-            $("main").append(htmlString);
+            return htmlString;
         }
     }
 
