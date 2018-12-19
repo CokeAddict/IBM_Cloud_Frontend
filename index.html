@@ -91,7 +91,7 @@
 
         //build content into modal after it shows
         //this is not part of the click-event for readability and to account for bugs
-        $('#detailModal').on('show.bs.modal', function (card) {
+        $('#detailModal').on('show.bs.modal', function () {
             let modal = $(this);
             modal.find('.modal-title').text('Statistical view of Sensor ' + sensor);
             let modalBody = buildStatView(dataArray, sensor);
