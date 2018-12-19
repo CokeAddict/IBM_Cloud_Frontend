@@ -998,5 +998,25 @@
       "humidity": 44,
       "distance": 598,
       "luminosity": 16
+   },
+   {
+      "_id": "5bf54abef464bcf960dd6f8x",
+      "index": 92,
+      "date": "2018-12-23 02:31:53",
+      "sensor": 5,
+      "temperature": 36,
+      "humidity": 54,
+      "distance": 652,
+      "luminosity": 28
+   },
+   {
+      "_id": "5bf54abef464bcf960dd6f8c",
+      "index": 92,
+      "date": "2018-12-23 02:31:53",
+      "sensor": "sdfkjvbskj",
+      "temperature": 36,
+      "humidity": 54,
+      "distance": 652,
+      "luminosity": 28
    }
 ]
