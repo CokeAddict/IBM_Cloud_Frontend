@@ -79,7 +79,7 @@
                 //refill main with the established methods
                 main.append(generatedHTML);
             });
-        }, 60000);
+        }, 10000);
 
         main.on('click', 'div.card', function () {
             $('#detailModal').modal('show');
@@ -169,29 +169,53 @@
                     "               <div class='col-3'>" +
                     "                   <label for='tempField'>Temperature</label>" +
                     "               </div>" +
-                    "               <div class='col-3'>" +
-                    "                   <span id='tempField'>" + array[i][temperatureString].toFixed(2) + "</span>" +
-                    "               </div>" +
+                    "               <div class='col-3'>";
+
+                if (array[i][temperatureString] == null){
+                    htmlString += "<span id='tempField'>N/A</span>";
+                } else{
+                    htmlString += "<span id='tempField'>" + array[i][temperatureString].toFixed(2) + "</span>";
+                }
+
+                htmlString += "     </div>" +
                     "               <div class='col-3'>" +
                     "                   <label for='distField'>Distance</label>" +
                     "               </div>" +
-                    "               <div class='col-3'>" +
-                    "                   <span id='distField'>" + array[i][distanceString].toFixed(2) + "</span>" +
-                    "               </div>" +
+                    "               <div class='col-3'>";
+
+                if (array[i][distanceString] == null){
+                    htmlString += "<span id='tempField'>N/A</span>";
+                } else{
+                    htmlString += "<span id='tempField'>" + array[i][distanceString].toFixed(2) + "</span>";
+                }
+
+                htmlString += "     </div>" +
                     "           </div>" +
                     "           <div class='row'>" +
                     "               <div class='col-3'>" +
                     "                   <label for='humiField'>Humidity</label>" +
                     "               </div>" +
-                    "               <div class='col-3'>" +
-                    "                   <span id='humiField'>" + array[i][humidityString].toFixed(2) + "</span>" +
-                    "               </div>" +
+                    "               <div class='col-3'>";
+
+                if (array[i][humidityString] == null){
+                    htmlString += "<span id='tempField'>N/A</span>";
+                } else{
+                    htmlString += "<span id='tempField'>" + array[i][humidityString].toFixed(2) + "</span>";
+                }
+
+                htmlString += "     </div>" +
                     "               <div class='col-3'>" +
                     "                   <label for='lumiField'>Luminosity</label>" +
                     "               </div>" +
-                    "               <div class='col-3'>" +
-                    "                   <span id='lumiField'>" + array[i][luminosityString].toFixed(2) + "</span>" +
-                    "               </div>" +
+                    "               <div class='col-3'>";
+
+                if (array[i][luminosityString] == null){
+                    htmlString += "<span id='tempField'>N/A</span>";
+                } else{
+                    htmlString += "<span id='tempField'>" + array[i][luminosityString].toFixed(2) + "</span>";
+                }
+
+                htmlString += "     </div>" +
                     "           </div>" +
                     "       </div>" +
                     "       <div class='card-footer'>" +
