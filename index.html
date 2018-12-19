@@ -56,14 +56,16 @@
     let distanceString = "distance";
 
     let main = $('main');   //main body element
+    let dataArray;          //data from json with all sensors
     let sensorArray;        //aggregated array containing all available sensors
     let generatedHTML;      //dynamically generated html code for appending to the main body element
-    let cardId;             //card that is clicked has to be saved to create modal properly
+    let sensor;             //sensor of the clicked card for use within the modal
 
     $(document).ready(function () {
         $.getJSON('testData.json', function (data) {
-            data.sort(SortBySensor);
-            sensorArray = BuildSensorArray(data);
+            dataArray = data;
+            dataArray.sort(SortBySensor);
+            sensorArray = BuildSensorArray(dataArray);
             generatedHTML = GenerateHTML(sensorArray);
             main.append(generatedHTML);
         });
@@ -71,29 +73,30 @@
         //reload content periodically (every minute => 60000ms = 1min)
         setInterval(function () {
             $.getJSON('testData.json', function (data) {
-                data.sort(SortBySensor);
-                sensorArray = BuildSensorArray(data);
+                dataArray = data;
+                dataArray.sort(SortBySensor);
+                sensorArray = BuildSensorArray(dataArray);
                 generatedHTML = GenerateHTML(sensorArray);
                 //clear html from main
                 main.empty();
                 //refill main with the established methods
                 main.append(generatedHTML);
             });
-        }, 10000);
+        }, 60000);
 
         main.on('click', 'div.card', function () {
+            sensor = $(this).data('sensor');
             $('#detailModal').modal('show');
-            //cardId = $(this).data('cardid');
-            //console.log(cardId);
         });
 
         //build content into modal after it shows
         //this is not part of the click-event for readability and to account for bugs
-        $('#detailModal').on('show.bs.modal', function () {
-            //let recipient = cardId.data('cardid');
-            //let modal = $(this);
-            //modal.find('.modal-title').text('This modal was triggered by ' + recipient);
-            //console.log(recipient);
+        $('#detailModal').on('show.bs.modal', function (card) {
+            let modal = $(this);
+            modal.find('.modal-title').text('Statistical view of Sensor ' + sensor);
+            let modalBody = buildStatView(dataArray, sensor);
+            modal.find('.modal-body').empty();
+            modal.find('.modal-body').append(modalBody);
         });
     });
 
@@ -160,7 +163,7 @@
                 }
 
                 htmlString += "<div class='col-3'>" +
-                    "   <div class='card' id='card_" + i + "' data-cardid='card_" + i + "'>" +
+                    "   <div class='card' id='card_" + i + "' data-sensor='" + array[i][sensorString] + "'>" +
                     "       <div class='card-header'>" +
                     "           <span>Sensor " + array[i][sensorString] + "</span>" +
                     "       </div> " +
@@ -171,9 +174,9 @@
                     "               </div>" +
                     "               <div class='col-3'>";
 
-                if (array[i][temperatureString] == null){
+                if (array[i][temperatureString] == null) {
                     htmlString += "<span id='tempField'>N/A</span>";
-                } else{
+                } else {
                     htmlString += "<span id='tempField'>" + array[i][temperatureString].toFixed(2) + "</span>";
                 }
 
@@ -183,9 +186,9 @@
                     "               </div>" +
                     "               <div class='col-3'>";
 
-                if (array[i][distanceString] == null){
+                if (array[i][distanceString] == null) {
                     htmlString += "<span id='tempField'>N/A</span>";
-                } else{
+                } else {
                     htmlString += "<span id='tempField'>" + array[i][distanceString].toFixed(2) + "</span>";
                 }
 
@@ -197,9 +200,9 @@
                     "               </div>" +
                     "               <div class='col-3'>";
 
-                if (array[i][humidityString] == null){
+                if (array[i][humidityString] == null) {
                     htmlString += "<span id='tempField'>N/A</span>";
-                } else{
+                } else {
                     htmlString += "<span id='tempField'>" + array[i][humidityString].toFixed(2) + "</span>";
                 }
 
@@ -209,9 +212,9 @@
                     "               </div>" +
                     "               <div class='col-3'>";
 
-                if (array[i][luminosityString] == null){
+                if (array[i][luminosityString] == null) {
                     htmlString += "<span id='tempField'>N/A</span>";
-                } else{
+                } else {
                     htmlString += "<span id='tempField'>" + array[i][luminosityString].toFixed(2) + "</span>";
                 }
 
@@ -228,6 +231,79 @@
                     htmlString += "</div>";
                 }
             }
+
+            return htmlString;
+        }
+    }
+
+    /**
+     * @return {string}
+     */
+    function buildStatView(array, sensor) {
+        //array == all data from json
+        //sensor == sensor-value from clicked card
+
+        if (Array.isArray(array)) {
+            let htmlString = "";
+
+            //arrays to store values for the selected sensor
+            let temperature = [];
+            let humidity = [];
+            let distance = [];
+            let luminosity = [];
+
+            //get all values for the selected sensor
+            for (let i = 0; i < array.length; i++) {
+                if (array[i][sensorString] === sensor) {
+                    temperature.push(array[i][temperatureString]);
+                    humidity.push(array[i][humidityString]);
+                    distance.push(array[i][distanceString]);
+                    luminosity.push(array[i][luminosityString]);
+                }
+            }
+
+            // TODO: check for null values -> write N/A into column instead
+            // TODO: build graphs
+            // TODO: calculate typical statistical values
+
+                htmlString += "<div class='container-fluid'>" +
+                "   <div class='row'>" +
+                "       <div class='col-6'>" +
+                "           <div class='row'>" +
+                "           " +     //temperature graph
+                "           </div>" +
+                "           <div class='row'>" +
+                "           " +     //temperature value(s)
+                "           </div>" +
+                "       </div>" +
+                "       <div class='col-6'>" +
+                "           <div class='row'>" +
+                "           " +     //distance graph
+                "           </div>" +
+                "           <div class='row'>" +
+                "           " +     //distance value(s)
+                "           </div>" +
+                "       </div>" +
+                "   </div>" +
+                "   <div class='row'>" +
+                "       <div class='col-6'>" +
+                "           <div class='row'>" +
+                "           " +     //humidity graph
+                "           </div>" +
+                "           <div class='row'>" +
+                "           " +     //humidity value(s)
+                "           </div>" +
+                "       </div>" +
+                "       <div class='col-6'>" +
+                "           <div class='row'>" +
+                "           " +     //luminosity graph
+                "           </div>" +
+                "           <div class='row'>" +
+                "           " +     //luminosity value(s)
+                "           </div>" +
+                "       </div>" +
+                "   </div>" +
+                "</div>";
 
             return htmlString;
         }
