@@ -10,9 +10,20 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!--other css integration-->
-    <link rel="stylesheet" href="rowStyle.css">
+    <link rel="stylesheet" href="style.css">
 
     <title>Dashboard</title>
+
+    <!--jquery integration-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <!--plotly.js-->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
 
@@ -37,14 +48,7 @@
 
 
 <!--scripting-->
-<!--jquery integration-->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
+
 
 <script>
     //strings to easily switch data-table names
@@ -94,9 +98,12 @@
         $('#detailModal').on('show.bs.modal', function () {
             let modal = $(this);
             modal.find('.modal-title').text('Statistical view of Sensor ' + sensor);
-            let modalBody = buildStatView(dataArray, sensor);
+
+            let modalBody = BuildStatView(dataArray, sensor);
             modal.find('.modal-body').empty();
             modal.find('.modal-body').append(modalBody);
+
+            PlotValues(dataArray, sensor);
         });
     });
 
@@ -239,7 +246,7 @@
     /**
      * @return {string}
      */
-    function buildStatView(array, sensor) {
+    function BuildStatView(array, sensor) {
         //array == all data from json
         //sensor == sensor-value from clicked card
 
@@ -252,6 +259,12 @@
             let distance = [];
             let luminosity = [];
 
+            //averages for later use
+            let tempAvg = 0;
+            let humiAvg = 0;
+            let distAvg = 0;
+            let lumiAvg = 0;
+
             //get all values for the selected sensor
             for (let i = 0; i < array.length; i++) {
                 if (array[i][sensorString] === sensor) {
@@ -259,54 +272,165 @@
                     humidity.push(array[i][humidityString]);
                     distance.push(array[i][distanceString]);
                     luminosity.push(array[i][luminosityString]);
+
+                    tempAvg = tempAvg + array[i][temperatureString];
+                    humiAvg = humiAvg + array[i][humidityString];
+                    distAvg = distAvg + array[i][distanceString];
+                    lumiAvg = lumiAvg + array[i][luminosityString];
                 }
             }
 
-            // TODO: check for null values -> write N/A into column instead
-            // TODO: build graphs
-            // TODO: calculate typical statistical values
+            //calculate averages
+            tempAvg = tempAvg / temperature.length;
+            humiAvg = humiAvg / humidity.length;
+            distAvg = distAvg / distance.length;
+            lumiAvg = lumiAvg / luminosity.length;
 
-                htmlString += "<div class='container-fluid'>" +
+            htmlString += "<div class='container-fluid text-center'>" +
                 "   <div class='row'>" +
-                "       <div class='col-6'>" +
+                "       <div class='col-12'" +
+                "           <h5 id='tempTitle'>Temperature</h5>" +
+                "           <div class='row' id='tempPlot'></div>" +
                 "           <div class='row'>" +
-                "           " +     //temperature graph
-                "           </div>" +
-                "           <div class='row'>" +
-                "           " +     //temperature value(s)
-                "           </div>" +
-                "       </div>" +
-                "       <div class='col-6'>" +
-                "           <div class='row'>" +
-                "           " +     //distance graph
-                "           </div>" +
-                "           <div class='row'>" +
-                "           " +     //distance value(s)
+                "               <div class='col-4'>" +
+                "                   <span id='tempMin'>Minimum: " + Math.min.apply(Math, temperature).toFixed(2) + "</span>" +
+                "               </div>" +
+                "               <div class='col-4'>" +
+                "                   <span id='tempAvg'>Average: " + tempAvg.toFixed(2) + "</span>" +
+                "               </div>" +
+                "              <div class='col-4'>" +
+                "                   <span id='tempMax'>Maximum: " + Math.max.apply(Math, temperature).toFixed(2) + "</span>" +
+                "               </div>" +
                 "           </div>" +
                 "       </div>" +
                 "   </div>" +
+
                 "   <div class='row'>" +
-                "       <div class='col-6'>" +
+                "       <div class='col-12 text-center'" +
+                "           <h5 id='distTitle'>Distance</h5>" +
+                "           <div class='row' id='distPlot'></div>" +
                 "           <div class='row'>" +
-                "           " +     //humidity graph
-                "           </div>" +
-                "           <div class='row'>" +
-                "           " +     //humidity value(s)
-                "           </div>" +
-                "       </div>" +
-                "       <div class='col-6'>" +
-                "           <div class='row'>" +
-                "           " +     //luminosity graph
-                "           </div>" +
-                "           <div class='row'>" +
-                "           " +     //luminosity value(s)
+                "               <div class='col-4'>" +
+                "                   <span id='distMin'>Minimum: " + Math.min.apply(Math, distance).toFixed(2) + "</span>" +
+                "               </div>" +
+                "               <div class='col-4'>" +
+                "                   <span id='distAvg'>Average: " + distAvg.toFixed(2) + "</span>" +
+                "               </div>" +
+                "              <div class='col-4'>" +
+                "                   <span id='distMax'>Maximum: " + Math.max.apply(Math, distance).toFixed(2) + "</span>" +
+                "               </div>" +
                 "           </div>" +
                 "       </div>" +
                 "   </div>" +
-                "</div>";
+
+                "   <div class='row'>" +
+                "       <div class='col-12 text-center'" +
+                "           <h5 id='humiTitle'>Humidity</h5>" +
+                "           <div class='row' id='humiPlot'></div>" +
+                "           <div class='row'>" +
+                "               <div class='col-4'>" +
+                "                   <span id='humiMin'>Minimum: " + Math.min.apply(Math, humidity).toFixed(2) + "</span>" +
+                "               </div>" +
+                "               <div class='col-4'>" +
+                "                   <span id='humiAvg'>Average: " + humiAvg.toFixed(2) + "</span>" +
+                "               </div>" +
+                "              <div class='col-4'>" +
+                "                   <span id='humiMax'>Maximum: " + Math.max.apply(Math, humidity).toFixed(2) + "</span>" +
+                "               </div>" +
+                "           </div>" +
+                "       </div>" +
+                "   </div>" +
+
+                "   <div class='row'>" +
+                "       <div class='col-12 text-center'" +
+                "           <h5 id='lumiTitle'>Luminosity</h5>" +
+                "           <div class='row' id='lumiPlot'></div>" +
+                "           <div class='row'>" +
+                "               <div class='col-4'>" +
+                "                   <span id='lumiMin'>Minimum: " + Math.min.apply(Math, luminosity).toFixed(2) + "</span>" +
+                "               </div>" +
+                "               <div class='col-4'>" +
+                "                   <span id='lumiAvg'>Average: " + lumiAvg.toFixed(2) + "</span>" +
+                "               </div>" +
+                "              <div class='col-4'>" +
+                "                   <span id='lumiMax'>Maximum: " + Math.max.apply(Math, luminosity).toFixed(2) + "</span>" +
+                "               </div>" +
+                "           </div>" +
+                "       </div>" +
+                "   </div>";
 
             return htmlString;
         }
+    }
+
+    function PlotValues(array, sensor) {
+        //arrays to store values for the selected sensor
+        let temperature = [];
+        let humidity = [];
+        let distance = [];
+        let luminosity = [];
+        let date = [];
+
+        let x = [];
+        let j = 0;
+
+        for (let i = 0; i < array.length; i++) {
+            if (array[i][sensorString] === sensor) {
+                temperature.push(array[i][temperatureString]);
+                humidity.push(array[i][humidityString]);
+                distance.push(array[i][distanceString]);
+                luminosity.push(array[i][luminosityString]);
+                date.push(array[i][dateString]);
+
+                x.push(j);
+                j++;
+
+            }
+        }
+
+        //build plots using plotly.js
+        let tempTrace = {
+            y: temperature,
+            mode: 'lines',
+            text: date,
+            marker: {
+                color: 'rgb(219, 64, 82)'
+            }
+        };
+        let humiTrace = {
+            y: humidity,
+            mode: 'lines',
+            text: date,
+            marker: {
+                color: 'rgb(59, 147, 247)'
+            }
+        };
+        let distTrace = {
+            y: distance,
+            mode: 'lines',
+            text: date,
+            marker: {
+                color: 'rgb(124, 204, 67)'
+            }
+        };
+        let lumiTrace = {
+            y: luminosity,
+            mode: 'lines',
+            text: date,
+            marker: {
+                color: 'rgb(252, 228, 50)'
+            }
+        };
+
+        let tempData = [tempTrace];
+        let humiData = [humiTrace];
+        let distData = [distTrace];
+        let lumiData = [lumiTrace];
+
+        Plotly.newPlot('tempPlot', tempData);
+        Plotly.newPlot('humiPlot', humiData);
+        Plotly.newPlot('distPlot', distData);
+        Plotly.newPlot('lumiPlot', lumiData);
     }
 
 </script>
