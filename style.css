@@ -1,4 +1,16 @@
-.card {
+main .card {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.modal-lg {
+    max-width: 90%;
+}
+
+.stats-footer {
+    margin-bottom: 20px;
+}
+
+.stats-title {
+    font-size: 24px;
 }

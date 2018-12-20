@@ -24,6 +24,11 @@
             crossorigin="anonymous"></script>
     <!--plotly.js-->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!--custom javascript-->
+    <script src="javascript/BuildSensorArray.js"></script>
+    <script src="javascript/GenerateHTML.js"></script>
+    <script src="javascript/BuildStatView.js"></script>
+    <script src="javascript/PlotValues.js"></script>
 </head>
 <body>
 
@@ -69,8 +74,8 @@
         $.getJSON('testData.json', function (data) {
             dataArray = data;
             dataArray.sort(SortBySensor);
-            sensorArray = BuildSensorArray(dataArray);
-            generatedHTML = GenerateHTML(sensorArray);
+            sensorArray = BuildSensorArray(dataArray, sensorString, dateString);
+            generatedHTML = GenerateHTML(sensorArray, sensorString, dateString, temperatureString, distanceString, humidityString, luminosityString);
             main.append(generatedHTML);
         });
 
@@ -79,8 +84,8 @@
             $.getJSON('testData.json', function (data) {
                 dataArray = data;
                 dataArray.sort(SortBySensor);
-                sensorArray = BuildSensorArray(dataArray);
-                generatedHTML = GenerateHTML(sensorArray);
+                sensorArray = BuildSensorArray(dataArray, sensorString, dateString);
+                generatedHTML = GenerateHTML(sensorArray, sensorString, dateString, temperatureString, distanceString, humidityString, luminosityString);
                 //clear html from main
                 main.empty();
                 //refill main with the established methods
@@ -97,13 +102,13 @@
         //this is not part of the click-event for readability and to account for bugs
         $('#detailModal').on('show.bs.modal', function () {
             let modal = $(this);
-            modal.find('.modal-title').text('Statistical view of Sensor ' + sensor);
+            modal.find('.modal-title').text('Statistics of Sensor ' + sensor);
 
-            let modalBody = BuildStatView(dataArray, sensor);
+            let modalBody = BuildStatView(dataArray, sensor, sensorString, temperatureString, distanceString, humidityString, luminosityString);
             modal.find('.modal-body').empty();
             modal.find('.modal-body').append(modalBody);
 
-            PlotValues(dataArray, sensor);
+            PlotValues(dataArray, sensor, sensorString, dateString, temperatureString, distanceString, humidityString, luminosityString);
         });
     });
 
@@ -115,324 +120,6 @@
         let bSensor = b[sensorString];
         return ((aSensor < bSensor) ? -1 : ((aSensor > bSensor) ? 1 : 0));
     }
-
-    function BuildSensorArray(array) {
-        if (Array.isArray(array)) {
-            let sensorArray = [];
-            sensorArray.push(array[0]);
-            let i;
-            let j = 0;
-            let k;
-            let l = 0;
-
-            for (i = 1; i < array.length; i++) {
-                if (array[i - 1][sensorString] === array[i][sensorString] && array[i] !== array[array.length - 1]) {
-                    j++;
-                } else if (array[i - 1][sensorString] !== array[i][sensorString] && array [i] !== array[array.length - 1]) {
-                    for (k = i - j - 1; k < i; k++) {
-                        if (array[k][dateString] > sensorArray[l][dateString]) {
-                            sensorArray[l] = array[k];
-                        }
-                    }
-                    sensorArray.push(array[i]);
-                    j = 0;
-                    l++;
-                } else if (array[i - 1][sensorString] === array[i][sensorString] && array[i] === array[array.length - 1]) {
-                    for (k = i - j - 1; k <= i; k++) {
-                        if (array[k][dateString] > sensorArray[l][dateString]) {
-                            sensorArray[l] = array[k];
-                        }
-                    }
-                } else {
-                    for (k = i - j - 1; k < i; k++) {
-                        if (array[k][dateString] > sensorArray[l][dateString]) {
-                            sensorArray[l] = array[k];
-                        }
-                    }
-                    sensorArray.push(array[i]);
-                }
-            }
-
-            return sensorArray;
-        }
-    }
-
-    /**
-     * @return {string}
-     */
-    function GenerateHTML(array) {
-        if (Array.isArray(array)) {
-            let htmlString = "";
-
-            for (let i = 0; i < array.length; i++) {
-                if (i % 4 === 0 || i === 0) {
-                    htmlString += "<div class='row'>";
-                }
-
-                htmlString += "<div class='col-3'>" +
-                    "   <div class='card' id='card_" + i + "' data-sensor='" + array[i][sensorString] + "'>" +
-                    "       <div class='card-header'>" +
-                    "           <span>Sensor " + array[i][sensorString] + "</span>" +
-                    "       </div> " +
-                    "       <div class='card-body'>" +
-                    "           <div class='row'>" +
-                    "               <div class='col-3'>" +
-                    "                   <label for='tempField'>Temperature</label>" +
-                    "               </div>" +
-                    "               <div class='col-3'>";
-
-                if (array[i][temperatureString] == null) {
-                    htmlString += "<span id='tempField'>N/A</span>";
-                } else {
-                    htmlString += "<span id='tempField'>" + array[i][temperatureString].toFixed(2) + "</span>";
-                }
-
-                htmlString += "     </div>" +
-                    "               <div class='col-3'>" +
-                    "                   <label for='distField'>Distance</label>" +
-                    "               </div>" +
-                    "               <div class='col-3'>";
-
-                if (array[i][distanceString] == null) {
-                    htmlString += "<span id='tempField'>N/A</span>";
-                } else {
-                    htmlString += "<span id='tempField'>" + array[i][distanceString].toFixed(2) + "</span>";
-                }
-
-                htmlString += "     </div>" +
-                    "           </div>" +
-                    "           <div class='row'>" +
-                    "               <div class='col-3'>" +
-                    "                   <label for='humiField'>Humidity</label>" +
-                    "               </div>" +
-                    "               <div class='col-3'>";
-
-                if (array[i][humidityString] == null) {
-                    htmlString += "<span id='tempField'>N/A</span>";
-                } else {
-                    htmlString += "<span id='tempField'>" + array[i][humidityString].toFixed(2) + "</span>";
-                }
-
-                htmlString += "     </div>" +
-                    "               <div class='col-3'>" +
-                    "                   <label for='lumiField'>Luminosity</label>" +
-                    "               </div>" +
-                    "               <div class='col-3'>";
-
-                if (array[i][luminosityString] == null) {
-                    htmlString += "<span id='tempField'>N/A</span>";
-                } else {
-                    htmlString += "<span id='tempField'>" + array[i][luminosityString].toFixed(2) + "</span>";
-                }
-
-                htmlString += "     </div>" +
-                    "           </div>" +
-                    "       </div>" +
-                    "       <div class='card-footer'>" +
-                    "           <span>" + array[i][dateString] + "</span>" +
-                    "       </div>" +
-                    "   </div> " +
-                    "</div>";
-
-                if (i % 4 === 3 || i === array.length - 1) {
-                    htmlString += "</div>";
-                }
-            }
-
-            return htmlString;
-        }
-    }
-
-    /**
-     * @return {string}
-     */
-    function BuildStatView(array, sensor) {
-        //array == all data from json
-        //sensor == sensor-value from clicked card
-
-        if (Array.isArray(array)) {
-            let htmlString = "";
-
-            //arrays to store values for the selected sensor
-            let temperature = [];
-            let humidity = [];
-            let distance = [];
-            let luminosity = [];
-
-            //averages for later use
-            let tempAvg = 0;
-            let humiAvg = 0;
-            let distAvg = 0;
-            let lumiAvg = 0;
-
-            //get all values for the selected sensor
-            for (let i = 0; i < array.length; i++) {
-                if (array[i][sensorString] === sensor) {
-                    temperature.push(array[i][temperatureString]);
-                    humidity.push(array[i][humidityString]);
-                    distance.push(array[i][distanceString]);
-                    luminosity.push(array[i][luminosityString]);
-
-                    tempAvg = tempAvg + array[i][temperatureString];
-                    humiAvg = humiAvg + array[i][humidityString];
-                    distAvg = distAvg + array[i][distanceString];
-                    lumiAvg = lumiAvg + array[i][luminosityString];
-                }
-            }
-
-            //calculate averages
-            tempAvg = tempAvg / temperature.length;
-            humiAvg = humiAvg / humidity.length;
-            distAvg = distAvg / distance.length;
-            lumiAvg = lumiAvg / luminosity.length;
-
-            htmlString += "<div class='container-fluid text-center'>" +
-                "   <div class='row'>" +
-                "       <div class='col-12'" +
-                "           <h5 id='tempTitle'>Temperature</h5>" +
-                "           <div class='row' id='tempPlot'></div>" +
-                "           <div class='row'>" +
-                "               <div class='col-4'>" +
-                "                   <span id='tempMin'>Minimum: " + Math.min.apply(Math, temperature).toFixed(2) + "</span>" +
-                "               </div>" +
-                "               <div class='col-4'>" +
-                "                   <span id='tempAvg'>Average: " + tempAvg.toFixed(2) + "</span>" +
-                "               </div>" +
-                "              <div class='col-4'>" +
-                "                   <span id='tempMax'>Maximum: " + Math.max.apply(Math, temperature).toFixed(2) + "</span>" +
-                "               </div>" +
-                "           </div>" +
-                "       </div>" +
-                "   </div>" +
-
-                "   <div class='row'>" +
-                "       <div class='col-12 text-center'" +
-                "           <h5 id='distTitle'>Distance</h5>" +
-                "           <div class='row' id='distPlot'></div>" +
-                "           <div class='row'>" +
-                "               <div class='col-4'>" +
-                "                   <span id='distMin'>Minimum: " + Math.min.apply(Math, distance).toFixed(2) + "</span>" +
-                "               </div>" +
-                "               <div class='col-4'>" +
-                "                   <span id='distAvg'>Average: " + distAvg.toFixed(2) + "</span>" +
-                "               </div>" +
-                "              <div class='col-4'>" +
-                "                   <span id='distMax'>Maximum: " + Math.max.apply(Math, distance).toFixed(2) + "</span>" +
-                "               </div>" +
-                "           </div>" +
-                "       </div>" +
-                "   </div>" +
-
-                "   <div class='row'>" +
-                "       <div class='col-12 text-center'" +
-                "           <h5 id='humiTitle'>Humidity</h5>" +
-                "           <div class='row' id='humiPlot'></div>" +
-                "           <div class='row'>" +
-                "               <div class='col-4'>" +
-                "                   <span id='humiMin'>Minimum: " + Math.min.apply(Math, humidity).toFixed(2) + "</span>" +
-                "               </div>" +
-                "               <div class='col-4'>" +
-                "                   <span id='humiAvg'>Average: " + humiAvg.toFixed(2) + "</span>" +
-                "               </div>" +
-                "              <div class='col-4'>" +
-                "                   <span id='humiMax'>Maximum: " + Math.max.apply(Math, humidity).toFixed(2) + "</span>" +
-                "               </div>" +
-                "           </div>" +
-                "       </div>" +
-                "   </div>" +
-
-                "   <div class='row'>" +
-                "       <div class='col-12 text-center'" +
-                "           <h5 id='lumiTitle'>Luminosity</h5>" +
-                "           <div class='row' id='lumiPlot'></div>" +
-                "           <div class='row'>" +
-                "               <div class='col-4'>" +
-                "                   <span id='lumiMin'>Minimum: " + Math.min.apply(Math, luminosity).toFixed(2) + "</span>" +
-                "               </div>" +
-                "               <div class='col-4'>" +
-                "                   <span id='lumiAvg'>Average: " + lumiAvg.toFixed(2) + "</span>" +
-                "               </div>" +
-                "              <div class='col-4'>" +
-                "                   <span id='lumiMax'>Maximum: " + Math.max.apply(Math, luminosity).toFixed(2) + "</span>" +
-                "               </div>" +
-                "           </div>" +
-                "       </div>" +
-                "   </div>";
-
-            return htmlString;
-        }
-    }
-
-    function PlotValues(array, sensor) {
-        //arrays to store values for the selected sensor
-        let temperature = [];
-        let humidity = [];
-        let distance = [];
-        let luminosity = [];
-        let date = [];
-
-        let x = [];
-        let j = 0;
-
-        for (let i = 0; i < array.length; i++) {
-            if (array[i][sensorString] === sensor) {
-                temperature.push(array[i][temperatureString]);
-                humidity.push(array[i][humidityString]);
-                distance.push(array[i][distanceString]);
-                luminosity.push(array[i][luminosityString]);
-                date.push(array[i][dateString]);
-
-                x.push(j);
-                j++;
-
-            }
-        }
-
-        //build plots using plotly.js
-        let tempTrace = {
-            y: temperature,
-            mode: 'lines',
-            text: date,
-            marker: {
-                color: 'rgb(219, 64, 82)'
-            }
-        };
-        let humiTrace = {
-            y: humidity,
-            mode: 'lines',
-            text: date,
-            marker: {
-                color: 'rgb(59, 147, 247)'
-            }
-        };
-        let distTrace = {
-            y: distance,
-            mode: 'lines',
-            text: date,
-            marker: {
-                color: 'rgb(124, 204, 67)'
-            }
-        };
-        let lumiTrace = {
-            y: luminosity,
-            mode: 'lines',
-            text: date,
-            marker: {
-                color: 'rgb(252, 228, 50)'
-            }
-        };
-
-        let tempData = [tempTrace];
-        let humiData = [humiTrace];
-        let distData = [distTrace];
-        let lumiData = [lumiTrace];
-
-        Plotly.newPlot('tempPlot', tempData);
-        Plotly.newPlot('humiPlot', humiData);
-        Plotly.newPlot('distPlot', distData);
-        Plotly.newPlot('lumiPlot', lumiData);
-    }
-
 </script>
 
 </body>
