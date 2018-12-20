@@ -183,7 +183,6 @@ function BuildStatView(array, sensor, sensorString, temperatureString, distanceS
             "           </div>" +
             "       </div>" +
             "   </div>";
-        ;
 
         return htmlString;
     }
